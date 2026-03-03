@@ -126,9 +126,6 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <div className="flex flex-col">
-                      <span className="text-[10px] font-mono font-black text-primary/40 mb-1 uppercase tracking-widest">
-                        NAV_0{i + 1}
-                      </span>
                       <span className={`text-4xl font-black uppercase tracking-tighter ${isActive(link.path) ? 'text-primary' : 'text-slate-900 dark:text-slate-100'}`}>
                         {link.name}
                       </span>

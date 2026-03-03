@@ -39,22 +39,16 @@ const Support: React.FC = () => {
                   <div>
                     <p className="text-sm font-bold text-slate-900 dark:text-white mb-1">Email Support</p>
                     <a href="mailto:support@fletched.archery" className="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">
-                      support@fletched.archery
+                      fletchedbrand@gmail.com
                     </a>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-4">
+                {/* <div className="flex items-start gap-4">
                   <div className="size-10 rounded-lg bg-primary/5 dark:bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <span className="material-symbols-outlined text-primary text-xl">forum</span>
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900 dark:text-white mb-1">Community & Feedback</p>
-                    <a href="mailto:feedback@fletched.archery" className="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">
-                      feedback@fletched.archery
-                    </a>
-                  </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
