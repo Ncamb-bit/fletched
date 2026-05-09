@@ -14,7 +14,7 @@ const Support: React.FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-950 min-h-screen pt-32 pb-20 transition-colors">
+    <div className="bg-background-light dark:bg-background-dark min-h-screen pt-32 pb-20 transition-colors">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* Header Section */}
