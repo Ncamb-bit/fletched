@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -61,6 +62,7 @@ function App() {
               <Route path="/delete-account" element={<DeleteAccount />} />
             </Routes>
           </MainLayout>
+          <Analytics />
         </Router>
       )}
     </AnimatePresence>
