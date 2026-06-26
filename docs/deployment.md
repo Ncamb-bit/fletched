@@ -1,41 +1,43 @@
 # Deployment
 
-The site is a static Vite/React SPA hosted on **Vercel**. Deploys are driven by
-**GitHub Actions**, not Vercel's native Git integration, so we control exactly
-*when* production updates.
+The site is a static Vite/React SPA hosted on **Vercel** via Vercel's **native Git
+integration** (no GitHub Actions). Production is gated behind a dedicated
+`production` branch so merging to `main` does **not** ship.
 
-| Trigger | Workflow | Result |
-| --- | --- | --- |
-| Open / update a PR into `main` | `.github/workflows/preview.yml` | Ephemeral **preview** URL, commented on the PR. Never touches prod. |
-| Publish a **GitHub Release** | `.github/workflows/production.yml` | Builds and deploys to **production**. |
-
-Merging to `main` does **not** deploy. Changes accumulate on `main` until you cut
-a release.
+| Action | What deploys |
+| --- | --- |
+| Open / update a PR into `main` | **Preview** build, URL commented on the PR (automatic). |
+| Merge into `main` | **Preview** only — does **not** touch production. |
+| Update the **`production`** branch | **Production** deploy. |
 
 ## One-time setup
 
-1. **Disconnect Vercel's Git integration** so it stops auto-deploying on push:
-   Vercel → Project → **Settings → Git → Disconnect**. (Actions becomes the only
-   deployer; if you skip this, every push to `main` would still deploy prod.)
-2. **Create a Vercel access token:** Vercel → **Account Settings → Tokens →
-   Create**. Copy it.
-3. **Get the org and project IDs:** run `vercel link` locally in this repo (or
-   read them from Vercel → Project → **Settings → General**). They land in
-   `.vercel/project.json` as `orgId` and `projectId`.
-4. **Add GitHub repo secrets** (Repo → **Settings → Secrets and variables →
-   Actions → New repository secret**):
-   - `VERCEL_TOKEN` — the token from step 2
-   - `VERCEL_ORG_ID` — `orgId`
-   - `VERCEL_PROJECT_ID` — `projectId`
+1. **Vercel → Project → Settings → Git → Production Branch:** change it from
+   `main` to **`production`**. (This is the switch that stops `main` from
+   auto-shipping to prod — after this, pushes to `main` are previews.)
+2. **Create the `production` branch** so Vercel has something to deploy:
+   ```sh
+   git checkout main && git pull
+   git branch production && git push -u origin production
+   ```
+   That first push deploys the current `main` to production.
 
-`.vercel/` is gitignored — never commit it.
+No tokens or secrets are needed — Vercel's Git integration handles everything.
 
 ## Cutting a production release
 
-1. Merge the PRs you want to ship into `main`.
-2. GitHub → **Releases → Draft a new release** → choose/create a tag (e.g.
-   `v1.1.0`) targeting `main` → **Publish release**.
-3. The `Production Deploy` workflow runs and pushes the build live.
+1. Merge the PRs you want to ship into `main` (each got its own preview).
+2. Promote `main` to production by updating the `production` branch — either:
+   - **Via PR (recommended):** open a PR from `main` → `production` and merge it
+     (gives you one last preview + a record of what shipped), or
+   - **Via CLI:**
+     ```sh
+     git checkout production && git merge main && git push
+     ```
+3. Vercel builds the `production` branch and deploys it live.
+
+> Prefer fully manual? You can instead leave things as previews and click
+> **Promote to Production** on any deployment in the Vercel dashboard.
 
 ## SPA routing
 
@@ -45,7 +47,9 @@ assets are served first, so this only affects app routes.
 
 ## Custom domain
 
-`fletchedco.com` is attached in Vercel → Project → **Settings → Domains**, with
-the DNS records (A / CNAME) configured at the domain registrar per Vercel's
-instructions. The Google Play account-deletion URL points at
-`https://fletchedco.com/delete-account`.
+`fletchedco.com` is attached in Vercel → Project → **Settings → Domains**, with the
+DNS records configured at the domain registrar per Vercel's instructions. The
+Google Play account-deletion URL should point at
+`https://fletchedco.com/delete-account` once the site is live there. (Until then,
+the current Railway page — `https://fletched-mobile-production.up.railway.app/delete-account`
+— is the valid deletion URL.)
