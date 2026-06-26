@@ -9,6 +9,7 @@ import Privacy from './pages/Privacy';
 import Security from './pages/Security';
 import Terms from './pages/Terms';
 import FAQ from './pages/FAQ';
+import DeleteAccount from './pages/DeleteAccount';
 import LoadingScreen from './components/ui/LoadingScreen';
 
 // Scroll to top on route change
@@ -57,6 +58,7 @@ function App() {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/security" element={<Security />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/delete-account" element={<DeleteAccount />} />
             </Routes>
           </MainLayout>
         </Router>

@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { Button } from '../components/ui/Button';
 // import { Badge } from '../components/ui/Badge';
-import { AppStoreButton } from '../components/ui/AppStoreButton';
+import { StoreButtons } from '../components/ui/StoreButton';
 import { CgFacebook } from "react-icons/cg";
 import { BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 
@@ -77,7 +77,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
 
           <div className="flex items-center gap-4">
-            <AppStoreButton variant="navbar" className="hidden md:flex" />
+            <StoreButtons variant="navbar" orientation="row" className="hidden md:flex gap-2" />
             <button
               onClick={toggleMenu}
               className={`lg:hidden inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-colors ${scrolled || !hasHeroImage ? 'text-slate-600 dark:text-slate-400' : 'text-white'}`}
@@ -147,7 +147,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                     <div className="size-2 rounded-full bg-primary animate-pulse"></div>
                     <span className="text-[10px] font-mono font-black text-slate-500 uppercase tracking-widest">SYSTEM_VERSION: v1.0.8_STABLE</span>
                  </div>
-                 <AppStoreButton className="w-full" variant="slate" />
+                 <StoreButtons variant="slate" orientation="stack" className="w-full" />
                </div>
             </div>
 
@@ -176,7 +176,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           {/* Minimal Navigation */}
           <div className="flex justify-center gap-x-10 gap-y-6 w-full flex-wrap mb-12">
-            {[...navLinks, { name: 'Privacy', path: '/privacy' }, { name: 'Security', path: '/security' }, { name: 'Terms', path: '/terms' }].map((link) => (
+            {[...navLinks, { name: 'Privacy', path: '/privacy' }, { name: 'Security', path: '/security' }, { name: 'Terms', path: '/terms' }, { name: 'Delete Account', path: '/delete-account' }].map((link) => (
               <Link
                 key={link.name}
                 to={link.path}

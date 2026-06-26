@@ -5,7 +5,7 @@ import { Card, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Iphone } from '../components/ui/Iphone';
 import { TypographyH1, TypographyH2, TypographyH3, TypographyP } from '../components/ui/Typography';
-import { AppStoreButton } from '../components/ui/AppStoreButton';
+import { StoreButtons } from '../components/ui/StoreButton';
 
 const Home: React.FC = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
               Bridge the gap between raw kinetic data and field execution with architectural precision. Simple. Static. Precise.
             </TypographyP>
             <div className="pt-4">
-              <AppStoreButton />
+              <StoreButtons variant="black" orientation="row" />
             </div>
           </AnimatedSection>
 
@@ -125,7 +125,7 @@ const Home: React.FC = () => {
          <AnimatedSection className="max-w-3xl mx-auto flex flex-col items-center">
             <Badge variant="default" className="mb-10">UPCOMING_RELEASE</Badge>
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-800 dark:text-white mb-10 leading-tight">Ready to recalibrate <br /> your hunt?</h2>
-            <AppStoreButton variant="slate" className="mx-auto" />
+            <StoreButtons variant="slate" orientation="row" className="justify-center" />
          </AnimatedSection>
       </section>
     </div>
