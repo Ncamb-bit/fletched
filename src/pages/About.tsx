@@ -2,7 +2,7 @@ import React from 'react';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import { Card, CardContent } from '../components/ui/Card';
 import { TypographyH1, TypographyH2, TypographyLead, TypographyP, TypographyBlockquote } from '../components/ui/Typography';
-import { AppStoreButton } from '../components/ui/AppStoreButton';
+import { StoreButtons } from '../components/ui/StoreButton';
 
 const About: React.FC = () => {
   return (
@@ -99,7 +99,7 @@ const About: React.FC = () => {
 
         {/* Compact CTA */}
         <AnimatedSection className="text-center">
-           <AppStoreButton variant="navbar" className="h-16 px-10 rounded-2xl mx-auto" />
+           <StoreButtons variant="navbar" orientation="row" className="justify-center" />
            <TypographyP className="text-[10px] font-mono uppercase tracking-[0.3em] text-slate-400 mt-6">
               Version 1.0.8 // Built for the Backcountry
            </TypographyP>
